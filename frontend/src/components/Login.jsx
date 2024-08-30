@@ -53,11 +53,7 @@ export default function FacebookLogin() {
           console.log("User cancelled login or did not fully authorize.");
         }
       },
-<<<<<<< HEAD
       { config_id: 3330570817238181, scope: "public_profile,email" }
-=======
-      { scope: "public_profile,email" }
->>>>>>> a1596bc177dc1bac22f31768ce3182e9d6bbd099
     );
   };
 
