@@ -38,9 +38,6 @@ export default function FacebookLogin() {
             { fields: "id,name,email,picture" },
             function (profile) {
               navigate("/profile", { state: { profile } });
-              // document.getElementById(
-              //   "profile"
-              //  )//.innerHTML = `Good to see you, ${profile.name}. I see your email address is ${profile.email}, <br> <img src='${profile.picture.data.url}' alt ="Profile pic">.`;
             }
           );
         } else {
@@ -52,14 +49,31 @@ export default function FacebookLogin() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center">
-      <div className="h-60 min-w-72 bg-slate-100 border-2 flex flex-col items-center justify-center gap-y-5 rounded shadow-sm">
-        <h1 className="text-blue-600 font-bold text-4xl mb-4">Facebook</h1>
+    <div className="min-h-screen bg-gradient-to-br from-blue-500 to-indigo-600 flex flex-col items-center justify-center">
+      <div className="flex  gap-2 mb-4 mr-10	">
+        <img
+          src="/src/assets/facebook-logo.png"
+          alt="Facebook Logo"
+          className="h-16 object-contain"
+        />
+
+        <h1 className="text-6xl font-bold text-center text-slate-50	 mb-10">
+          facebook
+        </h1>
+      </div>
+
+      <div className="bg-white p-8 rounded-lg shadow-2xl max-w-sm w-full">
+        <h1 className="text-4xl font-bold text-center text-blue-600 mb-6">
+          Welcome Back!
+        </h1>
+        <p className="text-center text-gray-600 mb-8">
+          Log in to connect with Facebook and access your personalized content.
+        </p>
         <button
-          className="bg-blue-600 text-white font-bold py-2 px-4 rounded"
+          className="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105"
           onClick={handleLogin}
         >
-          Log in to Facebook
+          Log in with Facebook
         </button>
       </div>
     </div>
