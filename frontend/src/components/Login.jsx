@@ -52,11 +52,10 @@ export default function FacebookLogin() {
     <div className="min-h-screen bg-gradient-to-br from-blue-500 to-indigo-600 flex flex-col items-center justify-center">
       <div className="flex  gap-2 mb-4 mr-10	">
         <img
-          src="/src/assets/facebook-logo.png"
+          src="/assets/facebook-logo.png"
           alt="Facebook Logo"
           className="h-16 object-contain"
         />
-
         <h1 className="text-6xl font-bold text-center text-slate-50	 mb-10">
           facebook
         </h1>
