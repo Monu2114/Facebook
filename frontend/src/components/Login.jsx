@@ -1,6 +1,9 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function FacebookLogin() {
+  const navigate = useNavigate(); // Get the navigate function
+
   useEffect(() => {
     // Load the Facebook SDK asynchronously
     (function (d, s, id) {
@@ -20,35 +23,26 @@ export default function FacebookLogin() {
             xfbml: true,
             version: "v20.0",
           });
-
-          FB.getLoginStatus(function (response) {
-            if (response.status === "connected") {
-              // User is logged in
-              FB.api("/me", { fields: "name,email" }, function (profile) {
-                document.getElementById(
-                  "profile"
-                ).innerHTML = `Good to see you, ${profile.name}. I see your email address is ${profile.email}.`;
-              });
-            } else {
-              // User is not logged in
-              console.log("User is not logged in.");
-            }
-          });
         };
       };
     })(document, "script", "facebook-jssdk");
-  }, []);
+  }, [navigate]);
 
   const handleLogin = () => {
     FB.login(
       function (response) {
         if (response.authResponse) {
           console.log("Welcome! Fetching your information....");
-          FB.api("/me", { fields: "name,email" }, function (profile) {
-            document.getElementById(
-              "profile"
-            ).innerHTML = `Good to see you, ${profile.name}. I see your email address is ${profile.email}.`;
-          });
+          FB.api(
+            "/me",
+            { fields: "id,name,email,picture" },
+            function (profile) {
+              navigate("/profile", { state: { profile } });
+              // document.getElementById(
+              //   "profile"
+              //  )//.innerHTML = `Good to see you, ${profile.name}. I see your email address is ${profile.email}, <br> <img src='${profile.picture.data.url}' alt ="Profile pic">.`;
+            }
+          );
         } else {
           console.log("User cancelled login or did not fully authorize.");
         }
@@ -67,7 +61,6 @@ export default function FacebookLogin() {
         >
           Log in to Facebook
         </button>
-        <div id="profile"></div>
       </div>
     </div>
   );
